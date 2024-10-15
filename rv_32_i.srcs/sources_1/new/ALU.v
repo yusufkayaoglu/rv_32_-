@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+djdjdjfjxnd
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -21,33 +22,33 @@
 
 
 module ALU(
- input [31:0] A, B,           // ALU'nun iki giriþi
-   input [3:0] ALUControl,      // ALU'nun yapacaðý iþlemi belirleyen kontrol sinyali
-   output reg [31:0] Result,    // ALU'nun iþlem sonucu
-   output Zero,                 // Zero bayraðý: ALU sonucu sýfýr mý?
-   output Less                  // Less bayraðý: A < B mi?
+ input [31:0] A, B,           // ALU'nun iki giriÃ¾i
+   input [3:0] ALUControl,      // ALU'nun yapacaÃ°Ã½ iÃ¾lemi belirleyen kontrol sinyali
+   output reg [31:0] Result,    // ALU'nun iÃ¾lem sonucu
+   output Zero,                 // Zero bayraÃ°Ã½: ALU sonucu sÃ½fÃ½r mÃ½?
+   output Less                  // Less bayraÃ°Ã½: A < B mi?
 
     );
     
     
     
-      // Zero bayraðý: ALU'nun sonucu sýfýrsa aktif olur
+      // Zero bayraÃ°Ã½: ALU'nun sonucu sÃ½fÃ½rsa aktif olur
       assign Zero = (Result == 32'b0);
       
-      // Less bayraðý: A < B kontrolü (A iþaretli ve iþaretsiz olabilir)
+      // Less bayraÃ°Ã½: A < B kontrolÃ¼ (A iÃ¾aretli ve iÃ¾aretsiz olabilir)
       assign Less = ($signed(A) < $signed(B));
   
       always @(*) begin
           case (ALUControl)
               4'b0010: Result = A + B;        // Toplama (ADD)
-              4'b0110: Result = A - B;        // Çýkarma (SUB)
-              4'b0000: Result = A & B;        // Mantýksal AND
-              4'b0001: Result = A | B;        // Mantýksal OR
-              4'b0011: Result = A ^ B;        // Mantýksal XOR
-              4'b0100: Result = A << B[4:0];  // Mantýksal sola kaydýrma (SLL)
-              4'b0101: Result = A >> B[4:0];  // Mantýksal saða kaydýrma (SRL)
-              4'b0111: Result = $signed(A) >>> B[4:0];  // Aritmetik saða kaydýrma (SRA)
-              default: Result = 32'b0;        // Varsayýlan durum: ALU sonucu sýfýr
+              4'b0110: Result = A - B;        // Ã‡Ã½karma (SUB)
+              4'b0000: Result = A & B;        // MantÃ½ksal AND
+              4'b0001: Result = A | B;        // MantÃ½ksal OR
+              4'b0011: Result = A ^ B;        // MantÃ½ksal XOR
+              4'b0100: Result = A << B[4:0];  // MantÃ½ksal sola kaydÃ½rma (SLL)
+              4'b0101: Result = A >> B[4:0];  // MantÃ½ksal saÃ°a kaydÃ½rma (SRL)
+              4'b0111: Result = $signed(A) >>> B[4:0];  // Aritmetik saÃ°a kaydÃ½rma (SRA)
+              default: Result = 32'b0;        // VarsayÃ½lan durum: ALU sonucu sÃ½fÃ½r
           endcase
       end
 endmodule
